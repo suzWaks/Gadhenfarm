@@ -56,11 +56,17 @@ export class MemStorage implements IStorage {
   // Contact methods
   async createContact(insertContact: InsertContact): Promise<Contact> {
     const id = this.contactId++;
+    
+    // Ensure null values for optional fields if they're undefined
     const contact: Contact = { 
-      ...insertContact, 
+      ...insertContact,
+      message: insertContact.message || null,
+      farmSize: insertContact.farmSize || null,
+      package: insertContact.package || null, 
       id, 
       createdAt: new Date()
     };
+    
     this.contacts.set(id, contact);
     return contact;
   }

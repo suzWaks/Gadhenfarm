@@ -1,28 +1,16 @@
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/context/theme-context";
 
+// Component updated to remove dark mode functionality
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-
+  // Using the simplified theme context
+  const { theme } = useTheme();
+  
+  // Since we've removed dark mode, this component doesn't need to toggle anything
+  // We could either remove it completely or keep a simplified version
+  
   return (
-    <div className="flex items-center justify-center w-12">
-      <div className="relative">
-        <input 
-          type="checkbox" 
-          id="toggle" 
-          checked={theme === 'dark'} 
-          onChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="sr-only"
-        />
-        <label 
-          htmlFor="toggle" 
-          className="flex h-6 w-12 cursor-pointer items-center rounded-full bg-gray-300 p-1"
-        >
-          <div className={`${theme === 'dark' ? 'translate-x-6' : 'translate-x-0'} h-4 w-4 rounded-full bg-white shadow-md transform duration-300 ease-in-out flex items-center justify-center`}>
-            {theme === 'dark' ? <Moon className="h-3 w-3 text-primary" /> : <Sun className="h-3 w-3 text-accent" />}
-          </div>
-        </label>
-      </div>
+    <div className="hidden">
+      {/* This component is hidden since we don't support theme toggling anymore */}
     </div>
   );
 }
