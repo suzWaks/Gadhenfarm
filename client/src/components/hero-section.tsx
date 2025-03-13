@@ -1,17 +1,60 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { fadeInUp, fadeIn } from "@/lib/animations";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap, Leaf, Droplets } from "lucide-react";
+import { useEffect } from "react";
 
 export function HeroSection() {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    });
+  }, [controls]);
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full -z-10">
-        <img 
-          src="/images/greenhouse-bg.svg" 
-          alt="Technology background" 
-          className="w-full h-full object-cover"
-        />
+      {/* Background Color with Gradient */}
+      <div className="absolute inset-0 w-full h-full -z-10 bg-gradient-to-br from-[#083932] via-[#072f29] to-[#0a443b]"></div>
+      
+      {/* Tech Patterns */}
+      <div className="absolute inset-0 w-full h-full -z-5 opacity-20">
+        <div className="absolute top-20 right-20 w-72 h-72 rounded-full border-2 border-[#B1D931] rotate-slow"></div>
+        <div className="absolute top-40 right-40 w-96 h-96 rounded-full border border-[#B1D931] rotate-medium"></div>
+        <div className="absolute bottom-40 left-40 w-64 h-64 rounded-full border border-[#B1D931] rotate-slow"></div>
+        
+        {/* Floating Elements */}
+        <div className="absolute top-1/4 left-1/4 w-20 h-20 bg-[#B1D931]/5 rounded-full float-slow"></div>
+        <div className="absolute top-1/3 right-1/3 w-16 h-16 bg-[#B1D931]/5 rounded-full float-medium"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-[#B1D931]/5 rounded-full float-slow"></div>
+        
+        {/* Animated dots */}
+        <div className="hidden lg:block">
+          {[...Array(20)].map((_, i) => (
+            <div 
+              key={i} 
+              className="absolute w-1 h-1 bg-[#B1D931] rounded-full pulse" 
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`
+              }}
+            ></div>
+          ))}
+        </div>
+        
+        {/* Grid lines */}
+        <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 h-full">
+          {[...Array(7)].map((_, i) => (
+            <div key={i} className="border-l border-[#B1D931]/10 h-full"></div>
+          ))}
+        </div>
+        <div className="absolute inset-0 grid grid-rows-2 md:grid-rows-4 lg:grid-rows-6 w-full">
+          {[...Array(7)].map((_, i) => (
+            <div key={i} className="border-t border-[#B1D931]/10 w-full"></div>
+          ))}
+        </div>
       </div>
       
       {/* Futuristic Graphics */}
@@ -21,6 +64,9 @@ export function HeroSection() {
         <div className="absolute top-40 right-40 w-96 h-96 rounded-full border border-[#B1D931]/10 opacity-20"></div>
         <div className="absolute bottom-10 left-10 w-40 h-40 rounded-full border border-[#B1D931]/30 opacity-25"></div>
       </div>
+      
+      {/* Animated Tech Grid */}
+      <div className="absolute inset-0 grid-scan"></div>
       
       {/* Hero Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
@@ -64,7 +110,7 @@ export function HeroSection() {
           >
             <a 
               href="#features" 
-              className="group relative overflow-hidden bg-[#B1D931] hover:bg-[#c5ec3c] text-[#083932] font-bold py-4 px-8 rounded-md shadow-lg text-center transition-all duration-300"
+              className="group relative overflow-hidden btn-primary text-center"
             >
               <span className="relative z-10 flex items-center justify-center">
                 Explore Solutions 
@@ -74,7 +120,7 @@ export function HeroSection() {
             </a>
             <a 
               href="#booking" 
-              className="group relative overflow-hidden bg-transparent hover:bg-white/10 text-white border border-white/30 font-bold py-4 px-8 rounded-md shadow-lg text-center transition-all duration-300"
+              className="group relative overflow-hidden btn-secondary text-center"
             >
               <span className="relative z-10">Get Started</span>
               <span className="absolute inset-0 w-full transform -translate-x-full group-hover:translate-x-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-in-out"></span>
@@ -84,10 +130,43 @@ export function HeroSection() {
       </div>
       
       {/* Tech Accents */}
-      <div className="absolute bottom-10 right-10 flex gap-3 opacity-60">
-        <div className="w-20 h-1 bg-[#B1D931] rounded-full"></div>
-        <div className="w-10 h-1 bg-white rounded-full"></div>
-        <div className="w-5 h-1 bg-[#B1D931] rounded-full"></div>
+      <div className="absolute bottom-10 right-10 flex gap-3">
+        <div className="tech-accent w-20 h-1 glow-effect"></div>
+        <div className="tech-accent w-10 h-1 bg-white"></div>
+        <div className="tech-accent w-5 h-1"></div>
+      </div>
+      
+      {/* Animated Feature Icons */}
+      <div className="hidden md:block">
+        <motion.div 
+          className="absolute top-1/4 right-20 bg-[#083932]/80 p-4 rounded-lg border border-[#B1D931]/30 backdrop-blur-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+        >
+          <Zap className="text-[#B1D931] h-8 w-8 float-medium" />
+          <p className="text-white text-sm mt-2">Smart Energy</p>
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-1/2 right-40 bg-[#083932]/80 p-4 rounded-lg border border-[#B1D931]/30 backdrop-blur-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+        >
+          <Leaf className="text-[#B1D931] h-8 w-8 float-slow" />
+          <p className="text-white text-sm mt-2">Eco System</p>
+        </motion.div>
+        
+        <motion.div 
+          className="absolute bottom-1/4 right-60 bg-[#083932]/80 p-4 rounded-lg border border-[#B1D931]/30 backdrop-blur-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 0.8 }}
+        >
+          <Droplets className="text-[#B1D931] h-8 w-8 float-medium" />
+          <p className="text-white text-sm mt-2">Water Control</p>
+        </motion.div>
       </div>
     </section>
   );
