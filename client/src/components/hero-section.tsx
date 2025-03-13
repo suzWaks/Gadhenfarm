@@ -7,7 +7,7 @@ export function HeroSection() {
   return (
     <section className="relative h-screen flex items-center bg-gradient-to-br from-[#083932] via-[#072f29] to-[#0a443b] overflow-hidden">
       {/* Particles Background */}
-      <ParticlesBackground />
+      <ParticlesBackground className="opacity-80" />
       
       {/* Futuristic Graphics */}
       <div className="absolute inset-0 w-full h-full z-0">

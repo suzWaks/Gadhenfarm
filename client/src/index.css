@@ -26,8 +26,8 @@
   position: absolute;
   background-color: #B1D931;
   border-radius: 50%;
-  animation: float var(--duration) infinite linear;
-  animation-delay: var(--delay);
+  animation: float 30s infinite ease-in-out;
+  will-change: transform;
 }
 
 .lines-container {
@@ -49,13 +49,13 @@
     transform: translateY(0) translateX(0);
   }
   25% {
-    transform: translateY(-20px) translateX(10px);
+    transform: translateY(-50px) translateX(25px);
   }
   50% {
-    transform: translateY(0) translateX(20px);
+    transform: translateY(0) translateX(50px);
   }
   75% {
-    transform: translateY(20px) translateX(10px);
+    transform: translateY(50px) translateX(25px);
   }
   100% {
     transform: translateY(0) translateX(0);

@@ -10,33 +10,40 @@ export function ParticlesBackground({ className }: ParticlesBackgroundProps) {
   
   useEffect(() => {
     // Generate particles
-    const particlesArray = Array(30).fill(0).map((_, index) => (
-      <div 
-        key={`particle-${index}`}
-        className="particle"
-        style={{
-          width: `${Math.random() * 2 + 1}px`,
-          height: `${Math.random() * 2 + 1}px`,
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          opacity: Math.random() * 0.5 + 0.1,
-          animationDuration: `${Math.random() * 100 + 20}s`,
-          animationDelay: `${Math.random() * 5}s`,
-        }}
-      />
-    ));
+    const particlesArray = Array(60).fill(0).map((_, index) => {
+      const size = Math.random() * 4 + 2;
+      const duration = Math.random() * 60 + 40;
+      return (
+        <div 
+          key={`particle-${index}`}
+          className="particle"
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            opacity: Math.random() * 0.7 + 0.2,
+            animationDuration: `${duration}s`,
+            animationDelay: `${Math.random() * 10}s`,
+            backgroundColor: Math.random() > 0.8 ? '#ffffff' : '#B1D931',
+          }}
+        />
+      );
+    });
     
     // Generate lines
-    const linesArray = Array(15).fill(0).map((_, index) => (
+    const linesArray = Array(25).fill(0).map((_, index) => (
       <div 
         key={`line-${index}`}
         className="line"
         style={{
-          width: `${Math.random() * 150 + 50}px`,
+          width: `${Math.random() * 200 + 100}px`,
+          height: `${Math.random() > 0.7 ? '2px' : '1px'}`,
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
-          opacity: Math.random() * 0.15 + 0.05,
+          opacity: Math.random() * 0.25 + 0.1,
           transform: `rotate(${Math.random() * 360}deg)`,
+          backgroundColor: Math.random() > 0.7 ? '#ffffff' : '#B1D931',
         }}
       />
     ));
