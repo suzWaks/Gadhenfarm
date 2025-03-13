@@ -37,7 +37,9 @@ const packages = [
       "4 sensor nodes",
       "2 control units"
     ],
-    color: "border-primary",
+    color: "#083932",
+    bgColor: "#ffffff",
+    textColor: "#083932",
     highlight: false
   },
   {
@@ -50,7 +52,9 @@ const packages = [
       "4 control units",
       "AI recommendations"
     ],
-    color: "border-accent",
+    color: "#B1D931",
+    bgColor: "#083932",
+    textColor: "#ffffff",
     highlight: true
   },
   {
@@ -64,7 +68,9 @@ const packages = [
       "Advanced analytics",
       "Priority support"
     ],
-    color: "border-coolBlue",
+    color: "#5EB1BF",
+    bgColor: "#ffffff",
+    textColor: "#083932",
     highlight: false
   }
 ];
@@ -154,21 +160,32 @@ export function BookingSection() {
               {packages.map((pkg, index) => (
                 <motion.div 
                   key={index}
+                  style={{ backgroundColor: pkg.bgColor, color: pkg.textColor, borderColor: pkg.color }}
                   className={`
-                    ${pkg.highlight ? 'bg-primary text-white transform scale-105' : 'bg-white text-gray-800'} 
-                    rounded-lg shadow-md p-6 border-t-2 ${pkg.color} text-center
+                    ${pkg.highlight ? 'transform scale-105' : ''} 
+                    rounded-lg shadow-md p-6 border-t-4 text-center relative overflow-hidden group
                   `}
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className={`font-bold ${pkg.highlight ? 'text-white' : 'text-primary'} text-lg mb-2`}>{pkg.name}</h3>
-                  <p className={`${pkg.highlight ? 'text-gray-200' : 'text-gray-600'} text-sm mb-4`}>{pkg.description}</p>
-                  <p className={`text-3xl font-bold ${pkg.highlight ? 'text-white' : 'text-primary'} mb-4`}>{pkg.price}</p>
-                  <ul className={`${pkg.highlight ? 'text-gray-200' : 'text-gray-600'} text-sm mb-4 space-y-2`}>
+                  {/* Background accent */}
+                  <div className="absolute top-0 right-0 w-16 h-16 -mt-6 -mr-6 rounded-full opacity-20" 
+                       style={{ backgroundColor: pkg.color }}></div>
+                  
+                  <h3 className="font-bold text-lg mb-2" style={{ color: pkg.highlight ? "#B1D931" : pkg.color }}>{pkg.name}</h3>
+                  <p className="text-sm mb-4 opacity-90">{pkg.description}</p>
+                  <p className="text-3xl font-bold mb-4" style={{ color: pkg.highlight ? "#B1D931" : pkg.color }}>{pkg.price}</p>
+                  <ul className="text-sm mb-6 space-y-2">
                     {pkg.features.map((feature, i) => (
-                      <li key={i}>{feature}</li>
+                      <li key={i} className="flex items-center">
+                        <span className="w-1.5 h-1.5 rounded-full mr-2" style={{ backgroundColor: pkg.highlight ? "#B1D931" : pkg.color }}></span>
+                        {feature}
+                      </li>
                     ))}
                   </ul>
+                  
+                  {/* Hover animation */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </motion.div>
               ))}
             </motion.div>

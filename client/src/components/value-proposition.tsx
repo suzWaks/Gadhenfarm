@@ -7,25 +7,25 @@ const valueProps = [
     icon: <LineChart className="h-10 w-10" />,
     title: "Real-Time Monitoring",
     description: "Monitor your greenhouse conditions 24/7 with precision sensors and real-time alerts.",
-    borderColor: "border-primary"
+    color: "#B1D931"
   },
   {
     icon: <Bot className="h-10 w-10" />,
     title: "AI-Driven Decision Support",
     description: "Optimize your crop yield with predictive analytics and AI-powered recommendations.",
-    borderColor: "border-accent"
+    color: "#083932"
   },
   {
     icon: <Wrench className="h-10 w-10" />,
     title: "Predictive Maintenance",
     description: "Reduce downtime with proactive alerts and maintenance scheduling before issues occur.",
-    borderColor: "border-coolBlue"
+    color: "#5EB1BF"
   },
   {
     icon: <Smartphone className="h-10 w-10" />,
     title: "Remote Control",
     description: "Control your greenhouse environment from anywhere using our secure mobile application.",
-    borderColor: "border-primary"
+    color: "#B1D931"
   }
 ];
 
@@ -34,7 +34,7 @@ export function ValueProposition() {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary font-inter mb-4">Transforming Greenhouse Management</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#083932] mb-4">Transforming Greenhouse Management</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">Our smart system brings cutting-edge technology to traditional farming practices.</p>
         </div>
         
@@ -48,18 +48,30 @@ export function ValueProposition() {
           {valueProps.map((prop, index) => (
             <motion.div 
               key={index}
-              className={`bg-white rounded-xl shadow-md p-8 border-t-4 ${prop.borderColor} transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+              className="group bg-white rounded-xl shadow-md p-8 border-b-4 border-[#083932] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               variants={fadeInUp}
               custom={index * 0.1}
             >
-              <div className={`text-${prop.borderColor.split('-')[1]} text-4xl mb-4`}>
+              <div className="mb-4 transition-all duration-300 group-hover:scale-110" style={{ color: prop.color }}>
                 {prop.icon}
               </div>
-              <h3 className="text-xl font-bold text-primary font-inter mb-3">{prop.title}</h3>
+              <h3 className="text-xl font-bold text-[#083932] mb-3">{prop.title}</h3>
               <p className="text-gray-600">{prop.description}</p>
+              
+              {/* Geometric accent */}
+              <div className="absolute -bottom-2 -right-2 w-12 h-12 rounded-tr-xl opacity-10" style={{ backgroundColor: prop.color }}></div>
             </motion.div>
           ))}
         </motion.div>
+        
+        {/* Decorative elements */}
+        <div className="mt-16 flex justify-center">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 rounded-full bg-[#B1D931]"></div>
+            <div className="w-20 h-1 bg-[#083932] rounded-full"></div>
+            <div className="w-3 h-3 rounded-full bg-[#B1D931]"></div>
+          </div>
+        </div>
       </div>
     </section>
   );
