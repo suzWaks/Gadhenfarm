@@ -1,35 +1,99 @@
 import { motion } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Droplets, Thermometer, Wind, Activity, LineChart, Lightbulb } from "lucide-react";
 
 const features = [
   {
     title: "Multi-Parameter Sensing",
     description: "Comprehensive monitoring of temperature, humidity, soil moisture, CO2 levels, and light intensity to ensure optimal growing conditions.",
-    image: "https://images.unsplash.com/photo-1595212483126-2379269e5ba1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "from-primary"
+    icon: Thermometer,
+    color: "bg-[#083932]",
+    iconColor: "#B1D931",
+    border: "border-[#B1D931]/30"
   },
   {
     title: "Automated Actuation",
     description: "Smart control systems for irrigation, ventilation, shading, and climate control that respond automatically to changing conditions.",
-    image: "https://images.unsplash.com/photo-1626397318708-6a19b366930b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "from-coolBlue"
+    icon: Wind,
+    color: "bg-[#0A4B42]",
+    iconColor: "#B1D931",
+    border: "border-[#B1D931]/30"
   },
   {
     title: "AI Predictive Analytics",
     description: "Advanced algorithms analyze patterns to predict crop needs, optimize resource usage, and prevent potential issues before they occur.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    color: "from-accent"
+    icon: LineChart,
+    color: "bg-[#083932]",
+    iconColor: "#B1D931",
+    border: "border-[#B1D931]/30"
+  },
+  {
+    title: "Water Conservation",
+    description: "Optimize water usage through precise drip irrigation scheduling based on real-time soil moisture data and weather forecasts.",
+    icon: Droplets,
+    color: "bg-[#0A4B42]",
+    iconColor: "#B1D931",
+    border: "border-[#B1D931]/30"
+  },
+  {
+    title: "Energy Optimization",
+    description: "Smart power management reduces energy consumption through efficient climate control and lighting systems with renewable energy integration.",
+    icon: Lightbulb,
+    color: "bg-[#083932]",
+    iconColor: "#B1D931",
+    border: "border-[#B1D931]/30"
+  },
+  {
+    title: "Yield Monitoring",
+    description: "Track plant growth, health, and production through advanced imaging systems and data analytics to maximize crop yield.",
+    icon: Activity,
+    color: "bg-[#0A4B42]",
+    iconColor: "#B1D931",
+    border: "border-[#B1D931]/30"
   }
 ];
 
 export function FeaturesSection() {
   return (
-    <section className="py-20 bg-gray-50" id="features">
+    <section className="py-20 relative" id="features">
+      {/* Background Image */}
+      <div className="absolute inset-0 w-full h-full -z-10">
+        <img 
+          src="/images/features-bg.svg" 
+          alt="Technology background" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary font-inter mb-4">Smart Greenhouse Features</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">Our comprehensive solution integrates hardware and software for complete greenhouse management.</p>
+          <motion.span 
+            className="inline-block px-4 py-1 mb-6 text-xs font-semibold tracking-wider text-[#083932] bg-[#B1D931] rounded-full uppercase"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            Advanced Technology
+          </motion.span>
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold text-white font-inter mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            Smart Greenhouse Features
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            Our comprehensive solution integrates hardware and software for complete greenhouse management, optimized for Bhutanese agriculture.
+          </motion.p>
         </div>
         
         <motion.div 
@@ -42,25 +106,18 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <motion.div 
               key={index}
-              className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className={`${feature.color} rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border ${feature.border} backdrop-blur-sm bg-opacity-80`}
               variants={fadeInUp}
               custom={index * 0.1}
             >
-              <div className="h-48 bg-primary relative">
-                <img 
-                  src={feature.image}
-                  alt={feature.title} 
-                  className="w-full h-full object-cover opacity-80"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-tr ${feature.color} to-transparent opacity-70`}></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-xl font-bold font-inter">{feature.title}</h3>
+              <div className="p-8">
+                <div className="mb-5 w-14 h-14 rounded-full flex items-center justify-center bg-white/10">
+                  <feature.icon size={28} style={{ color: feature.iconColor }} />
                 </div>
-              </div>
-              <div className="p-6">
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-bold font-inter text-white mb-3">{feature.title}</h3>
+                <p className="text-gray-300 mb-5">{feature.description}</p>
                 <div className="mt-4">
-                  <a href="#" className="text-accent font-medium hover:text-accent-dark transition-colors inline-flex items-center">
+                  <a href="#" className="text-[#B1D931] font-medium hover:text-white transition-colors inline-flex items-center">
                     Learn more <ArrowRight className="ml-1 h-4 w-4" />
                   </a>
                 </div>

@@ -1,13 +1,18 @@
 import { motion } from "framer-motion";
 import { fadeInUp, fadeIn } from "@/lib/animations";
-import { ParticlesBackground } from "./ui/particles-background";
 import { ArrowRight } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative h-screen flex items-center bg-gradient-to-br from-[#083932] via-[#072f29] to-[#0a443b] overflow-hidden">
-      {/* Particles Background */}
-      <ParticlesBackground className="opacity-80" />
+    <section className="relative h-screen flex items-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 w-full h-full -z-10">
+        <img 
+          src="/images/greenhouse-bg.svg" 
+          alt="Technology background" 
+          className="w-full h-full object-cover"
+        />
+      </div>
       
       {/* Futuristic Graphics */}
       <div className="absolute inset-0 w-full h-full z-0">
