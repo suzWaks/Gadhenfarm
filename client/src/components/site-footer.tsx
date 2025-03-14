@@ -1,7 +1,7 @@
-import { Leaf, Facebook, Twitter, Linkedin, Instagram, MapPin, PhoneCall, Mail, Clock } from "lucide-react";
-import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { Clock, Facebook, Instagram, Leaf, Linkedin, Mail, MapPin, PhoneCall, Twitter } from "lucide-react";
+import { useState } from "react";
 import { z } from "zod";
 
 const newsletterSchema = z.object({
@@ -60,7 +60,7 @@ export function SiteFooter() {
               <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                 <Leaf className="text-primary h-5 w-5" />
               </div>
-              <span className="ml-3 text-xl font-bold font-inter">GreenSense</span>
+              <span className="ml-3 text-xl font-bold font-inter">Gaden Farm</span>
             </div>
             <p className="text-gray-300 mb-6">
               Empowering Bhutanese farmers with smart greenhouse automation technology to increase yields and sustainability.
