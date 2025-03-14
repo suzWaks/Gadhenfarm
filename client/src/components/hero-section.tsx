@@ -37,13 +37,6 @@ const letterVariants: Variants = {
   }
 };
 
-// Extend the global Window type for particlesJS
-declare global {
-  interface Window {
-    particlesJS: any;
-  }
-}
-
 // Utility function to split text into letters
 const renderLetters = (text: string) =>
   text.split("").map((char, index) => (
@@ -63,31 +56,11 @@ export function HeroSection() {
     });
   }, [controls]);
 
-  // Load particles.js configuration and adjust canvas style
-  useEffect(() => {
-    if (window.particlesJS) {
-      window.particlesJS.load("particles-js", "/images/assets/particles.json", function () {
-        console.log("callback - particles.js config loaded");
-        // Cast the element to HTMLCanvasElement to access the style property
-        const particlesCanvas = document.querySelector("#particles-js canvas") as HTMLCanvasElement | null;
-        if (particlesCanvas) {
-          particlesCanvas.style.zIndex = "-30";
-          particlesCanvas.style.position = "absolute";
-        }
-      });
-    } else {
-      console.error("particlesJS is not available");
-    }
-  }, []);
-
   const headingText = "The Future of Farming";
   const subheadingText = "For Bhutanese Agriculture";
 
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
-      {/* Particles.js container */}
-      <div id="particles-js" className="absolute inset-0 -z-30"></div>
-
       {/* Background Color with Gradient */}
       <div className="absolute inset-0 w-full h-full -z-10 bg-gradient-to-br from-[#083932] via-[#072f29] to-[#0a443b]"></div>
 

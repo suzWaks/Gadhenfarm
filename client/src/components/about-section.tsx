@@ -31,7 +31,7 @@ const teamMembers = [
   ,
   {
     name: "Tshering Kibu",    
-    title: "Marketing Specialist",
+    title: "Marketing Specialist and founder of Urban Farm ",
     image: "/images/assets/team/Kibu.png"
   }           
  
