@@ -46,18 +46,15 @@ app.use((req, res, next) => {
 
   // Serve static files based on environment
   if (process.env.NODE_ENV === "production") {
-    // Explicitly serve static files from the Vite build output directory
-    app.use(express.static(path.join(process.cwd(), "dist/public")));
-    
-    // Catch-all route to handle SPA routing
-    app.get("*", (req, res) => {
-      // Skip API routes
-      if (req.path.startsWith("/api")) {
-        return next();
-      }
-      res.sendFile(path.join(process.cwd(), "dist/public/index.html"));
-    });
-  } else {
+  app.use(express2.static(path3.join(process.cwd(), "dist/public")));
+  
+  app.get("*", (req, res, next) => { // Add 'next' parameter here
+    if (req.path.startsWith("/api")) {
+      return next();
+    }
+    res.sendFile(path3.join(process.cwd(), "dist/public/index.html"));
+  });
+} else {
     // Development mode
     await setupVite(app, server);
   }
